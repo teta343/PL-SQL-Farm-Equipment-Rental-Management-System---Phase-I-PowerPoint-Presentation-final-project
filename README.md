@@ -1,98 +1,79 @@
-Course: INSY 8311 - Database Development with PL/SQl
-
-Institution: Adventist University of Central Africa (AUCA)
-
-Academic Year: 2025-2026 | Semester I
-
-Lecturer: Eric Maniraquha
+course: INSY 8311 - Database Development with PL/SQL
 
 Student: Teta kevine 
 
-Student ID: 27973
+ID: 27973
 
-This capstone project demonstrates mastery of Oracle database design, PL/SQL development, and Business Intelligence implementation through a comprehensive Farm Equipment Rental Management System.
+Lecturer: Eric Maniraquha
+
+University: Adventist University of Central Africa (AUCA)
+
+Date: 20 December 2025
+
+A comprehensive Oracle PL/SQL database solution for managing farm equipment rentals in Rwanda.
+This production-ready system automates the entire rental process from booking to return, with built-in analytics and security features.
+
 
 🎯 Problem Statement
 
-Farmers and agricultural cooperatives in Rwanda face significant challenges in managing equipment rentals:
+Farmers and agricultural cooperatives struggle with manual equipment rental systems that cause scheduling conflicts, revenue loss, 
+and poor maintenance tracking. Our solution provides real-time availability, automated bookings, and business intelligence for better decision-making.
 
-Manual tracking leads to double bookings and scheduling conflicts
 
-No real-time availability information for equipment
+🎯 Key Objectives
 
-Inefficient maintenance scheduling causing equipment downtime
+✅ Automate rental booking and payment processing
 
-Revenue loss from poor inventory management
+✅ Track equipment maintenance and utilization
 
-🚀 Solution
+✅ Implement advanced auditing and security rules
 
-A production-ready Oracle PL/SQL database system featuring:
+✅ Provide business intelligence dashboards
 
-Core Features
+✅ Ensure data integrity with PL/SQL constraints
 
-✅ Automated Booking System - Real-time availability checking and reservation
+1. SETUP  THE  DATABASE
 
-✅ Payment Processing - Multiple payment methods with transaction tracking
+Run these scripts in SQL Developer in order:
 
-✅ Maintenance Management - Scheduled and on-demand maintenance tracking
+@01_create_tables.sql    -- Creates all 8 database tables
 
-✅ Advanced Auditing - Comprehensive security and compliance logging
+@02_insert_data.sql      -- Inserts sample data
 
-✅ Business Intelligence - Analytics and reporting capabilities
+@03_procedures_functions.sql -- Creates PL/SQL programs
 
-Lack of business intelligence for decision making
-Database Schema
-8 Normalized Tables (3NF):
+@04_triggers_audit.sql   -- Sets up security and auditing
 
-Customer - Customer information and membership tracking
 
-Equipment - Equipment inventory and status management
+2. TEST THE  SYSTEM
 
-Rental - Rental transactions and scheduling
+-- Book a tractor for 7 days
 
-Payment - Payment processing and reconciliation
+DECLARE
+    v_rental_id NUMBER;
+    v_status VARCHAR2(200);
+    
+BEGIN
+    rental_management_pkg.book_rental(
+        p_cust_id => 101,      -- Customer ID
+        p_eq_id => 1,          -- Tractor ID  
+        p_days => 7,           -- 7 days rental
+        p_rental_id => v_rental_id,
+        p_status => v_status
+    );
+    DBMS_OUTPUT.PUT_LINE('Result: ' || v_status);
+END;
+/
 
-Maintenance - Equipment maintenance history
+3. CHECK AUDIT LOG (Security Feature)
 
-Holidays - Public holiday management for business rules
+SELECT * FROM Audit_Log 
 
-Audit_Log - Comprehensive security auditing
+WHERE attempt_date >= SYSDATE - 1
 
-Employee_Access - Employee activity tracking
+ORDER BY attempt_date DESC;
 
-⚙️ Technical Implementation
+📁 Project Structure
 
-PL/SQL Components Developed
-
-Phase I-V: Foundation
-Business Process Modeling (UML/BPMN diagrams)
-
-Logical Database Design (ER diagrams, Data Dictionary)
-
-Physical Database Creation (Oracle PDB configuration)
-
-Table Implementation (CREATE scripts with constraints)
-
-Data Population (100+ realistic records per main table)
-
-Phase VI: PL/SQL Programming
-Stored Procedures (5+ procedures including book_equipment, process_payment, return_equipment)
-
-Functions (5+ functions including calculate_rental_cost, check_availability)
-
-Cursors (Explicit and bulk collection cursors)
-
-Window Functions (ROW_NUMBER, RANK, LAG/LEAD analytics)
-
-Packages (rental_management_pkg with encapsulated logic)
-
-Phase VII: Advanced Programming & Auditing
-Triggers (4 triggers implementing critical business rules)
-
-Business Rule: Employees cannot INSERT/UPDATE/DELETE on weekdays or public holidays
-
-Audit System: Comprehensive logging of all database operations
-
-Security Rules: Row-level and statement-level restrictions
-
-Holiday Management: Dynamic public holiday tracking
+Complete ER diagram showing all 8 tables with relationships
+screenshots/er_diagram.png
