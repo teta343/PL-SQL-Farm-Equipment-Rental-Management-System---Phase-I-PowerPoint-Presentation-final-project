@@ -73,4 +73,34 @@ WHERE attempt_date >= SYSDATE - 1
 
 ORDER BY attempt_date DESC;
 
+Phase I: Problem Identification 🔍
 
+Why it mattered: We identified real pain points - not just technical requirements. 
+This ensured our solution would actually help people, not just be a "database for database's sake."
+
+Phase II: Business Process Modeling 📈
+
+Why it mattered: We mapped out how farmers actually work - from inquiry to return. 
+This human-centered design made our system intuitive and practical.
+
+Phase III: Logical Database Design 🏗️
+
+Why it mattered: Clean, organized structure means fast queries, easy maintenance, and scalability. 
+Proper normalization prevents data errors as the business grows.
+
+Phase IV: Database Creation ⚙️
+
+Why it mattered: Setting up the technical foundation correctly ensures reliability,
+security, and performance from day one.
+
+Phase V: Table Implementation 📋
+
+Why it mattered: Realistic sample data allowed thorough testing before real users depend on the system.
+
+Phase VI: PL/SQL Programming 💻
+
+Why it mattered: This is the "brain" of the system - automated logic that handles complex business rules, calculations, and validations automatically.
+
+Phase VII: Advanced Features & Security 🔒
+
+Why it mattered: The audit system and business rules ensure trust. Companies know who did what, when, and why. The weekday/holiday restriction prevents costly human errors.
