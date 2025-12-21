@@ -73,7 +73,4 @@ WHERE attempt_date >= SYSDATE - 1
 
 ORDER BY attempt_date DESC;
 
-📁 Project Structure
 
-Complete ER diagram showing all 8 tables with relationships
-screenshots/er_diagram.png
